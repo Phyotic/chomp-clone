@@ -1,0 +1,31 @@
+@font-face {
+    font-family: inter-bold;
+    src: url(/resources/fonts/Inter-Bold.woff);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: inter-regular;
+    src: url(/resources/fonts/Inter-Regular.woff);
+}
+
+@font-face {
+    font-family: inter-semibold;
+    src: url(/resources/fonts/Inter-SemiBold.woff);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inter-regular, Arial, Helvetica, sans-serif;
+}
+
+:root {
+
+}
+
+a {
+    cursor: pointer;
+}
+
