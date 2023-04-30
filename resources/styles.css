@@ -26,10 +26,32 @@
     --trans-white: rgba(245, 245, 245, 0.875);
     --light-white: #ffffff;
     --purple-blue: #28224b;
+    --light-purple-blue: #546285;
+    --light-blue-bg-image: #f5fafc;
 }
 
+/* Classes and universal style*/
 a {
     cursor: pointer;
+}
+
+.highlight-blue {
+    color: var(--prime-color-blue);
+}
+
+.design-button {
+    border: none;
+    background-color: var(--prime-color-blue);
+    padding: 1.2rem 2.3rem;
+    background-image: url("/images/Button\ Wave.svg");
+    color: white;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+.relative-absolute-background {
+    display: relative;
+    width: 100%;
 }
 
 /*Navigation-delivery notice*/
@@ -69,10 +91,16 @@ a {
 /*Navigation-link menu*/
 nav {
     overflow: hidden;
+    background-color: var(--light-blue-bg-image);
+}
+
+#nav-background {
+    position: absolute;
+    z-index: -1;
 }
 
 #link-menu {
-    background-color: var(--light-white);
+    background-color: var(--light-blue-bg-image);
     margin: 1rem 0;
 }
 
@@ -144,10 +172,89 @@ nav {
     margin: 20px 20px 15px 20px
 }
 
+/* First Impressions Section*/
+#first-impression-content {
+    padding: 1rem auto;
+}
+
+#first-impression-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#background-container {
+    position: relative;
+    width: 100%;
+    z-index: -1;
+}
+
+#background-image {
+    position: absolute;
+    height: 600px;
+    background-size: cover;
+    left: -200px;
+    top: -50px;
+}
+
+#first-impression-left h1 {
+    font-size: 3rem;
+    text-align: center;
+    font-family: inter-bold;
+    line-height: 3.2rem;
+}
+
+#h1-under {
+    margin: 20px .5rem 20px;
+    color: var(--light-purple-blue);
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+}
+
+#order-button {
+    margin: 2rem auto 1.5rem;
+}
+
+#trustpilot {
+    margin: 10px 15px 10px 0px;
+}
+
+#review-text {
+    color: black;
+    margin-bottom: 6rem;
+}
+
+#first-impression-right {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+#social-food {
+    width: 95%;
+}
+
+#impression-bg {
+    display: none;
+}
+
+
 @media screen and (min-width: 990px){
     /* Display delivery and order note*/
+    nav {
+        background-color: white;
+    }
+
     #delivery-notice {
         display: block;
+    }
+
+    #link-menu {
+        margin: .5rem 4% auto 2%;
+        background-color: white;
     }
 
     /* Hide burger menu, list nav links. */
@@ -174,5 +281,61 @@ nav {
 
     #nav-list li:hover {
         opacity: 1;
+    }
+
+    /*First Impression section */
+    #first-impression {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #first-impression-content {
+        display: flex;
+        padding: 8.5rem 2rem;
+        overflow: hidden;
+    }
+
+    #first-impression-left {
+        display: flex;
+        width: 50%;
+        align-items: start;
+    }
+
+    #first-impression-left h1 {
+        text-align: left;
+        font-size: 3.8rem;
+        line-height: 4rem;
+    }
+
+    #h1-under {
+        text-align: left;
+    }
+
+    #order-button {
+        margin: auto 0px auto 0%;
+    }
+
+    #first-impression-right {
+        width: 50%;
+    }
+
+    #order-button {
+        margin: 1rem 0px;
+    }
+
+    #social-food {
+        object-fit: contain;
+        width: 100%;
+    }
+
+    #background-container {
+        display: none;
+    }
+
+    #impression-bg {
+        position: absolute;
+        left: 30px;
+        width: 100%;
+        z-index: -1;
     }
 }
