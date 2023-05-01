@@ -241,6 +241,78 @@ nav {
     display: none;
 }
 
+/* Fresh products section*/
+#fresh-products {
+    position: relative;
+    padding-bottom: 6rem;
+    overflow: hidden;
+
+    border: 1px solid red;
+}
+
+#fresh-bg {
+    position: absolute;
+    z-index: -2;
+    height: 150%;
+    overflow-y:hidden;
+    top: -100px;
+}
+
+#yum-yum {
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    z-index: 1;
+
+    border: 1px solid green;
+}
+
+#fresh-products-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#left-fresh-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 1;
+}
+
+#left-fresh-section h1 {
+    text-align: center;
+    color: var(--prime-color-blue);
+    font-size: 48px;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+    line-height: 3rem;
+}
+
+#left-fresh-section p {
+    color: var(--light-purple-blue);
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: 1.125rem;
+    padding: 5px;
+}
+
+#about-us-button {
+    width: 78%;
+    margin: 3rem auto;
+    background-repeat: no-repeat;
+}
+
+#right-fresh-section {
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+#woman-eating-burger {
+    width: 100%;
+    margin-right: 5px;
+}
 
 @media screen and (min-width: 990px){
     /* Display delivery and order note*/
@@ -311,10 +383,6 @@ nav {
         text-align: left;
     }
 
-    #order-button {
-        margin: auto 0px auto 0%;
-    }
-
     #first-impression-right {
         width: 50%;
     }
@@ -337,5 +405,6 @@ nav {
         left: 30px;
         width: 100%;
         z-index: -1;
+        display: block;
     }
 }
