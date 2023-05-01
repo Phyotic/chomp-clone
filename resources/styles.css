@@ -246,8 +246,6 @@ nav {
     position: relative;
     padding-bottom: 6rem;
     overflow: hidden;
-
-    border: 1px solid red;
 }
 
 #fresh-bg {
@@ -263,8 +261,6 @@ nav {
     top: 200px;
     width: 100%;
     z-index: 1;
-
-    border: 1px solid green;
 }
 
 #fresh-products-content {
@@ -406,5 +402,59 @@ nav {
         width: 100%;
         z-index: -1;
         display: block;
+    }
+
+    /* Fresh Products Section */
+    #fresh-products {
+        margin-top: 4rem;
+        padding: 20px;
+        margin-right: 20px;
+    }
+
+    #fresh-bg {
+        width: 100%;
+        top: -200px;
+    }
+
+    #yum-yum {
+        z-index: -1;
+        top: 70px;
+        width: auto;
+    }
+
+    #fresh-products-content {
+        display: flex;
+        flex-direction: row;
+        overflow: visible;
+    }
+
+    #left-fresh-section {
+        display: flex;
+        flex-basis: 55%;
+        padding-left: 10px;
+        align-items: start;
+    }
+
+    #left-fresh-section h1 {
+        font-size: 60px;
+        text-align: left;
+        line-height: 3.5rem;
+    }
+
+    #left-fresh-section p {
+        margin: 10px 0;
+        text-align: left;
+    }
+
+    #about-us-button {
+        margin: 30px 0;
+        padding: 20px 35px;
+        width: auto;
+    }
+
+    #right-fresh-section {
+        flex-basis: 50%;
+        position: relative;
+        top: -50px;
     }
 }
