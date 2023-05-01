@@ -241,6 +241,74 @@ nav {
     display: none;
 }
 
+/* Fresh products section*/
+#fresh-products {
+    position: relative;
+    padding-bottom: 6rem;
+    overflow: hidden;
+}
+
+#fresh-bg {
+    position: absolute;
+    z-index: -2;
+    height: 150%;
+    overflow-y:hidden;
+    top: -100px;
+}
+
+#yum-yum {
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    z-index: 1;
+}
+
+#fresh-products-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#left-fresh-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 1;
+}
+
+#left-fresh-section h1 {
+    text-align: center;
+    color: var(--prime-color-blue);
+    font-size: 48px;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+    line-height: 3rem;
+}
+
+#left-fresh-section p {
+    color: var(--light-purple-blue);
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: 1.125rem;
+    padding: 5px;
+}
+
+#about-us-button {
+    width: 78%;
+    margin: 3rem auto;
+    background-repeat: no-repeat;
+}
+
+#right-fresh-section {
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+#woman-eating-burger {
+    width: 100%;
+    margin-right: 5px;
+}
 
 @media screen and (min-width: 990px){
     /* Display delivery and order note*/
@@ -311,10 +379,6 @@ nav {
         text-align: left;
     }
 
-    #order-button {
-        margin: auto 0px auto 0%;
-    }
-
     #first-impression-right {
         width: 50%;
     }
@@ -337,5 +401,60 @@ nav {
         left: 30px;
         width: 100%;
         z-index: -1;
+        display: block;
+    }
+
+    /* Fresh Products Section */
+    #fresh-products {
+        margin-top: 4rem;
+        padding: 20px;
+        margin-right: 20px;
+    }
+
+    #fresh-bg {
+        width: 100%;
+        top: -200px;
+    }
+
+    #yum-yum {
+        z-index: -1;
+        top: 70px;
+        width: auto;
+    }
+
+    #fresh-products-content {
+        display: flex;
+        flex-direction: row;
+        overflow: visible;
+    }
+
+    #left-fresh-section {
+        display: flex;
+        flex-basis: 55%;
+        padding-left: 10px;
+        align-items: start;
+    }
+
+    #left-fresh-section h1 {
+        font-size: 60px;
+        text-align: left;
+        line-height: 3.5rem;
+    }
+
+    #left-fresh-section p {
+        margin: 10px 0;
+        text-align: left;
+    }
+
+    #about-us-button {
+        margin: 30px 0;
+        padding: 20px 35px;
+        width: auto;
+    }
+
+    #right-fresh-section {
+        flex-basis: 50%;
+        position: relative;
+        top: -50px;
     }
 }
