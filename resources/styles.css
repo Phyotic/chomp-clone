@@ -28,6 +28,7 @@
     --purple-blue: #28224b;
     --light-purple-blue: #546285;
     --light-blue-bg-image: #f5fafc;
+    --dark-prime-blue: #1b9097;
 }
 
 /* Classes and universal style*/
@@ -47,6 +48,11 @@ a {
     color: white;
     border-radius: 5px;
     font-size: 1.1rem;
+}
+
+.dark-prime-blue {
+    color: var(--dark-prime-blue);
+    font-family: inter-bold;
 }
 
 
@@ -551,6 +557,10 @@ nav {
     text-align: center;
 }
 
+#background-image-2 {
+    display: none;
+}
+
 #left-call-section h1 {
     font-size: 2.9rem;
     font-family: inter-bold;
@@ -567,6 +577,56 @@ nav {
 #phone-image {
     width: 100%;
     padding: 6% 2% 0 0;
+}
+
+/* Order Section */ 
+#order {
+    display: flex;
+    flex-direction: column;
+    margin: 3%;
+
+    overflow: hidden;
+}
+
+#order-image {
+    height: 100%;
+    width: 190%;
+    object-fit:contain;
+    object-position: -135px;
+}
+
+#order-section {
+    position: relative;
+    background-color: var(--prime-color-blue);
+    margin-top: 7%;
+    padding: 20% 4%;
+    z-index: 1;
+}
+
+#background-dots {
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+
+    top: -5px;
+    left: 1px;
+}
+
+#order-section h1 {
+    font-size: 2.56rem;
+    color: white;
+    font-family: inter-bold;
+    line-height: 3rem;
+}
+
+#order-button {
+    color: var(--prime-color-blue);
+    background-color: white;
+    padding: 19px 29%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    margin: 50px 0 0;
 }
 
 @media screen and (min-width: 990px){
@@ -862,29 +922,92 @@ nav {
     /* Call section */
     #call {
         background-color: transparent;
-        padding: 0 1% 0 3%;
+        margin: 2% 2% 0;
+        padding: 0 0;
+        z-index: -1;
+    }
 
-        border: 2px dashed red;
+    #call-yum-yum {
+        position: absolute;
+        width: 45%;
+        left: 3%;
+        z-index: 0;
     }
 
     #call-section {
+        position: relative;
         display: flex;
         flex-direction: row;
+        margin: 2% 0 0;
+    }
 
-        border: 1px dashed blue;
+    #background-image-2 {
+        display: initial;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        top: 10%;
     }
 
     #left-call-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         text-align: left;
-        padding: 10% 0;
+        padding: 15% 0 0;
+    }
 
-        border: 1px solid green;
+    #left-call-section h1 {
+        font-size: 3.3rem;
+        line-height: 3.5rem;;
+    }
+
+    #left-call-section p {
+        padding: 5% 0;
+    }
+
+    #faq-button {
+        width: 45%;
     }
 
     #phone-image {
-        height: 550px;
-
-        border: 1px solid purple;
-        width: 550px;
+        width: 48%;
+        height: 60%;
     }
+
+    /* Order Section */
+    #order {
+        flex-direction: row;
+        margin: 10% 3%;
+        justify-content: space-between;
+    }
+
+    #order-image-container {
+        width: 49%;
+        overflow: hidden;
+    }
+
+    #order-image {
+        height: 100%;
+        width: 110%;
+        object-fit:cover;
+        object-position: -195px;
+    }
+
+    #order-section {
+        margin: 0;
+        width: 49%;
+        padding: 15% 6% 8%;
+    }
+
+    #order-section h1 {
+        font-size: 3.3rem;
+        line-height: 4rem;
+    }
+
+    #order-button {
+        padding: 20px 10%;
+        margin: 15% 0;
+    }
+
 }
