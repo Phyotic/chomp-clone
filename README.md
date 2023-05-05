@@ -1,12 +1,11 @@
 # Chomp Clone
-Site recreation attempt for [Chomp Template](https://chomp.webflow.io/) from webflow. The target is only on the visual layout of the front page. The focus is on the mobile layout first. The desktop version will eventually be done as well.
+Site recreation attempt for [Chomp Template](https://chomp.webflow.io/) from webflow. The target is only on the visual layout of the front page. The focus is on the mobile layout first. The laptop/desktop version will eventually be completed as well.
 
 ## Status
-Initial structure completed.
+Initial structure and CSS layout completed for mobile and laptop.
 
 ## Next steps would be the following:
-1. CSS
+1. Javascript Scrips
 2. Animations
-3. Javascript scripts
-4. Desktop layouts
-5. Additional pages
+3. Desktop layout
+4. Additional Pages
