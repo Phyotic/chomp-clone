@@ -59,6 +59,10 @@ hr {
     opacity: .2;
 }
 
+.inter-bold {
+    font-family: inter-bold;
+}
+
 
 /*Navigation-delivery notice*/
 #delivery-notice {
@@ -107,7 +111,7 @@ nav {
 
 #link-menu {
     background-color: var(--light-blue-bg-image);
-    margin: 1rem 0;
+    margin: 3% 0 8%;
 }
 
 #nav-right {
@@ -209,19 +213,20 @@ nav {
     font-size: 3rem;
     text-align: center;
     font-family: inter-bold;
-    line-height: 3.2rem;
+    line-height: 3.1rem;
+    margin: 6% 0;
 }
 
 #h1-under {
-    margin: 20px .5rem 20px;
+    margin: 2% .5rem 20px;
     color: var(--light-purple-blue);
     text-align: center;
     font-size: 1.1rem;
     line-height: 1.5rem;
 }
 
-#order-button {
-    margin: 2rem auto 1.5rem;
+#first-impression-button {
+    margin: 12% 0 7%;
 }
 
 #trustpilot {
@@ -1112,38 +1117,33 @@ ul li {
     }
 
     #logo-and-purpose {
-        width: 45%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         row-gap: 10%;
-
-        z-index: 2;
     }
 
     #logo-and-purpose p {
-        padding-right: 35%;
+        padding-right: 45%;
         line-height: 1.7rem;
     }
 
     #footer-logo {
         padding: 0;
-        width: 9.5%
+        width: 8.5%
     }
 
     #columns {
         display: flex;
         flex-direction: row;
-        width: 60%;
+        width: 50%;
         padding: 9% 0 0;
     }
 
     .footer-col {
-        margin: 0 9%;
-    }
-
-    .footer-double-word {
-        /* line-height: 120%; */
+        margin: 0;
+        width: 33.33%;
     }
 
     #socials-section {
