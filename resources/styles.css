@@ -314,12 +314,12 @@ nav {
     width: 100%;
     margin-right: 5px;
     max-width: 500px;
+    margin-top: 1rem;
 }
 
 /* How it works section*/
 .step {
     text-align: center;
-    padding: auto 2rem;
 }
 
 .step-image {
@@ -350,6 +350,7 @@ nav {
     text-align: center;
     font-size: 3rem;
     margin: 70px 0 50px;
+    font-family: inter-bold;
 }
 
 #steps-container {
@@ -818,7 +819,8 @@ ul li {
     #yum-yum {
         z-index: -1;
         top: 200px;
-        width: auto; 
+        width: clamp(200px, 50%, 600px);
+        max-width: initial;
     }
 
     #fresh-products-content {
@@ -826,6 +828,7 @@ ul li {
         flex-direction: row;
         overflow: visible;
 
+        margin-top: 2rem;
         max-width: 1600px;
     }
 
@@ -867,28 +870,47 @@ ul li {
         margin: 150px 0;
     }
 
+    .step {
+        display: flex;
+        flex-direction: column;
+        max-height: 440px;
+    }
+
     .step h2 {
         padding: 0 0px;
         font-size: 22px;
+        flex-basis: 25%;
     }
     
     .step p {
         margin-top: 10px;
         padding: 0;
         font-size: 17px;
+        flex-basis: 25%;
+    }
+
+    .step img {
+        max-width: 330px;
+        max-height: 360px;
+        flex-basis: 50%;
     }
 
     #how-it-works h1{
-        margin-bottom: 60px;
+        padding-bottom: 30px;
+        font-size: 3.5rem;
     }
 
     #how-it-works {
-        margin: 8rem 0 6rem;
+        padding: 110px 0 10%;
     }
 
     #steps-container {
         display: flex;
         flex-direction: row;
+
+        width: clamp(200px, 100%, 1200px);
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #step-2 {
