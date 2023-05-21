@@ -320,11 +320,12 @@ nav {
 /* How it works section*/
 .step {
     text-align: center;
+    width: clamp(100%, 40%, 100%);
 }
 
 .step-image {
-    width: 100%;
     margin-bottom: 2.9rem;
+    width: clamp(100%, 40%, 400px);
 }
 
 .step h2 {
@@ -363,8 +364,7 @@ nav {
 .menu-button {
     border: 1px solid lightgray;
     background-color: transparent;
-    margin: 2% auto;
-    width: 85%;
+    margin: 2% 15px;
     border-radius: 5px;
     padding: 15px;
     font-size: 1rem;
@@ -372,11 +372,11 @@ nav {
 }
 
 .product-card {
-    margin: 10px auto;
+    margin: 10px 5px;
     background-color: white;
     border-radius: 5px;
     border: 1px solid rgba(53, 184, 190, .2);
-    padding: 15px;
+    padding: 10px 15px;
 }
 
 .product-photo-container {
@@ -392,7 +392,7 @@ nav {
 .product-name-price {
     display: flex;
     flex-direction: column;
-    margin: 1.4rem 0 .8rem;
+    margin: 1.4rem 0 0;
 }
 
 .product-name {
@@ -409,7 +409,7 @@ nav {
 
 .quantity-add-button {
     display: flex;
-    margin-top: 1.4rem;
+    margin: 1rem 0;
 }
 
 .quantity {
@@ -429,7 +429,7 @@ nav {
 
 .add-to-cart-button {
     background-image: none;
-    padding: 0 1rem;
+    padding: 0 0.8rem;
     font-size: 1rem;
 }
 
@@ -454,12 +454,21 @@ nav {
     flex-direction: column;
 }
 
+#menu-heading {
+    text-align: center;
+
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #menu-heading h1 {
     color: var(--prime-color-blue);
     font-size: 3rem;
     text-align: center;
     line-height: 3.5rem;
     margin: 100px 0 20px 0;
+    font-family: inter-bold;
 }
 
 #phone-link {
@@ -467,24 +476,30 @@ nav {
 }
 
 #menu-heading p {
-    text-align: center;
     padding: 0 15px;
     line-height: 1.5rem;
     color: var(--light-purple-blue);
     font-size: 1.1rem;
     margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #menu-type-buttons {
-    margin: 30px 0;
+    margin: 25px 0;
     display: flex;
     flex-direction: column;
+    padding: 0 10px;
 }
 
 #menu-grid {
     display: flex;
     flex-direction: column;
     padding: 0px 20px;
+/* 
+    margin-right: auto;
+    margin-left: auto; */
+    justify-content: space-evenly;
 }
 
 #full-menu-button {
@@ -662,7 +677,6 @@ footer {
 #logo-and-purpose p {
     color: var(--light-purple-blue);
     font-size: 1.1rem;
-    
 }
 
 .footer-col {
@@ -833,8 +847,6 @@ ul li {
     }
 
     #left-fresh-section {
-        display: flex;
-        flex-basis: 55%;
         padding-left: 3%;
         align-items: start;
     }
@@ -879,20 +891,17 @@ ul li {
     .step h2 {
         padding: 0 0px;
         font-size: 22px;
-        flex-basis: 25%;
     }
     
     .step p {
         margin-top: 10px;
         padding: 0;
         font-size: 17px;
-        flex-basis: 25%;
     }
 
     .step img {
-        max-width: 330px;
+        max-width: auto;
         max-height: 360px;
-        flex-basis: 50%;
     }
 
     #how-it-works h1{
@@ -901,7 +910,7 @@ ul li {
     }
 
     #how-it-works {
-        padding: 110px 0 10%;
+        padding: 110px 0 120px;
     }
 
     #steps-container {
@@ -913,22 +922,22 @@ ul li {
         margin-right: auto;
     }
 
-    #step-2 {
-        width: 75%;
-    }
-
     /* Menu container */
     .product-card {
         max-width: 48%;
         display: flex;
         flex-direction: row;
+
+        padding: 10px 25px;
     }
 
     .product-photo-container {
         max-width: 30%;
         align-self: center;
-        margin-left: 10px;
-        margin-right: 20px;
+
+        margin-right: 30px;
+        
+        max-width: 120px;
     }
 
     .product-name-price {
@@ -937,9 +946,34 @@ ul li {
         justify-content: space-between;
     }
 
+    .menu-button {
+        width: 100%;
+    }
+
+    .quantity {
+        width: 60px;
+    }
+
     #menu-container {
         background-color: transparent;
         position: relative;
+    }
+
+    #menu-bg {
+        position: absolute;
+        top: -3%;
+        padding: 0 2%;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        display: initial;
+        left: 0;
+    }
+
+    #menu-content {
+        width: clamp(10%, 100%, 1300px);
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #menu-heading h1 {
@@ -948,17 +982,15 @@ ul li {
     }
 
     #menu-heading p {
-        width: 55%;
         margin: auto;
     }
 
     #menu-type-buttons {
         flex-direction: row;
         justify-content: center;
-        column-gap: 2rem;
-        padding-right: 25%;
-        padding-left: 25%;
         margin-top: 40px;
+
+        /* width: 60%; */
     }
 
     #menu-grid {
@@ -971,15 +1003,6 @@ ul li {
 
     #full-menu-button {
         max-width: 20%;
-    }
-
-    #menu-bg {
-        position: absolute;
-        top: -2%;
-        padding: 0 2%;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
     }
 
     /* Faq Section */
