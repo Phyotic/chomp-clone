@@ -57,6 +57,10 @@ a {
 
 hr {
     opacity: .2;
+
+    width: clamp(10%, 90%, 1200px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .inter-bold {
@@ -567,9 +571,7 @@ nav {
     background-color: var(--light-blue-bg-image);
     overflow: hidden;
     z-index: -1;
-
     padding: 120px 5px;
-
     background-image: url(/images/BG\ Shape\ Content.svg);
     background-repeat: no-repeat;
     background-position: top center;
@@ -577,27 +579,23 @@ nav {
 
 #call-yum-yum {
     position: absolute;
-    top: 20%;
+    top: 22%;
     width: 100%;
     z-index: -1;
     left: 0;
-
     width: clamp(10%, 90%, 500px);
 }
 
 #call-section {
     text-align: center;
-
     width: clamp(10%, 100%, 1500px);
 }
 
 #left-call-section {
     padding-bottom: 50px;
-
     width: clamp(10%, 100%, 600px);
     margin-left: auto;
     margin-right: auto;
-
 }
 
 #left-call-section h1 {
@@ -628,32 +626,28 @@ nav {
     display: flex;
     flex-direction: column;
     margin: 3%;
-
     overflow: hidden;
 }
 
-#order-image {
-    height: 100%;
-    width: 190%;
-    object-fit:contain;
-    object-position: -135px;
+#order-image-container {
+    height: 420px;
+    overflow: hidden;
+    background-image: url(/images/Group\ Photo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
 #order-section {
     position: relative;
     background-color: var(--prime-color-blue);
     margin-top: 7%;
-    padding: 20% 4%;
+    padding: 70px 4%;
     z-index: 1;
-}
-
-#background-dots {
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-
-    top: -5px;
-    left: 1px;
+    height: 420px;
+    background-image: url(/images/Pattern\ 01.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 #order-section h1 {
@@ -690,7 +684,9 @@ footer {
     flex-direction: column;
     padding: 0 0 20%;
 
-    z-index: 2;
+    width: clamp(10%, 100%, 1200px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #footer-logo {
@@ -719,8 +715,11 @@ footer {
     font-size: .9rem;
     padding: 17% 1% 10%;
     position: relative;
-    margin: 5% 0 0;
     z-index: 2;
+
+    width: clamp(10%, 100%, 1200px);
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #socials-left-section {
@@ -1029,13 +1028,8 @@ ul li {
     }
 
     /* Faq Section */
-
     #faq {
-        /* padding-top: 13%; */
         padding: 150px 0 0px;
-        
-        /* margin: 5% 1%; */
-        
     }
 
     #dot-pattern {
@@ -1079,13 +1073,11 @@ ul li {
         background-color: transparent;
         z-index: -1;
         padding: 0 20px;
-
         background-size: clamp(10%, 95%, 1600px);
     }
 
     #call-yum-yum {
         max-width: 700px;
-
         left: 13%;
         top: 25%;
     }
@@ -1095,7 +1087,6 @@ ul li {
         display: flex;
         flex-direction: row;
         padding: 0 10px;
-
         margin-right: auto;
         margin-left: auto;
     }
@@ -1105,7 +1096,6 @@ ul li {
         flex-direction: column;
         justify-content: center;
         text-align: left;
-        
         padding: 15% 0;
     }
 
@@ -1130,68 +1120,69 @@ ul li {
     /* Order Section */
     #order {
         flex-direction: row;
-        margin: 10% 3% 3%;
+        margin: 5% 3% 3%;
         justify-content: space-between;
     }
 
     #order-image-container {
         width: 49%;
         overflow: hidden;
-    }
-
-    #order-image {
-        height: 100%;
-        width: 110%;
-        object-fit:cover;
-        object-position: -195px;
+        height: 640px;
     }
 
     #order-section {
         margin: 0;
         width: 49%;
-        padding: 15% 6% 8%;
+        padding: 150px 57px 100px;
+        height: 640px;
     }
 
     #order-section h1 {
         font-size: 3.3rem;
         line-height: 4rem;
+        padding-top: 50px;
     }
 
     #order-button {
-        padding: 20px 10%;
-        margin: 15% 0;
+        padding: 20px 10px;
+        margin: 50px 0;
+        width: 160px;
     }
 
     /* Footer Section */
+    footer {
+        padding: 0px 3% 0;
+    }
+
     #links-section {
         flex-direction: row;
         padding: 0;
-        margin: 1% 0 12%;
     }
 
     #logo-and-purpose {
-        width: 50%;
+        width: 33%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        row-gap: 10%;
+        /* justify-content: center; */
+        row-gap: 6%;
     }
 
     #logo-and-purpose p {
-        padding-right: 45%;
+        padding-right: 15%;
         line-height: 1.7rem;
     }
 
     #footer-logo {
-        padding: 0;
-        width: 8.5%
+        padding: 110px 0 5px;
+        width: clamp(10%, 100%, 40px);
     }
 
     #columns {
         display: flex;
         flex-direction: row;
-        width: 50%;
-        padding: 9% 0 0;
+        
+        padding: 100px 0;
+        width: 67%;
     }
 
     .footer-col {
@@ -1202,20 +1193,19 @@ ul li {
     #socials-section {
         display: flex;
         flex-direction: row;
-        margin: 0;
-        padding: 0;
+        padding: 70px 0;
+
+
     }
 
     #socials-left-section {
         width: 50%;
-        padding: 7.5% 0;
         text-align: left;
     }
 
     #socials-right-section {
         width: 50%;
         margin: 0;
-        padding: 7% 0 0;
         text-align: right;
     }
 
