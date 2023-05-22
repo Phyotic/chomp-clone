@@ -460,7 +460,6 @@ nav {
 
 #menu-heading {
     text-align: center;
-
     max-width: 550px;
     margin-left: auto;
     margin-right: auto;
@@ -500,9 +499,6 @@ nav {
     display: flex;
     flex-direction: column;
     padding: 0px 20px;
-/* 
-    margin-right: auto;
-    margin-left: auto; */
     justify-content: space-evenly;
 }
 
@@ -521,7 +517,6 @@ nav {
     margin-right: auto;
     margin-left: auto;
     padding-top: 20%;
-
     width: clamp(10%, 100%, 1200px);
 }
 
@@ -547,7 +542,6 @@ nav {
     font-family: inter-bold;
     font-size: 3rem;
     line-height: 3rem;
-
 }
 
 #faq-right-section p {
@@ -674,7 +668,6 @@ footer {
     flex-direction: column;
     background-color: var(--light-blue-bg-image);
     padding: 0 3%;
-
     z-index: 2;
 }
 
@@ -716,7 +709,6 @@ footer {
     padding: 17% 1% 10%;
     position: relative;
     z-index: 2;
-
     width: clamp(10%, 100%, 1200px);
     margin-right: auto;
     margin-left: auto;
@@ -789,7 +781,6 @@ ul li {
         display: flex;
         list-style-type: none;
         align-items: center;
-
     }
 
     #nav-list li {
@@ -864,7 +855,6 @@ ul li {
         display: flex;
         flex-direction: row;
         overflow: visible;
-
         margin-top: 2rem;
         max-width: 1600px;
     }
@@ -939,7 +929,6 @@ ul li {
     #steps-container {
         display: flex;
         flex-direction: row;
-
         width: clamp(200px, 100%, 1200px);
         margin-left: auto;
         margin-right: auto;
@@ -950,16 +939,13 @@ ul li {
         max-width: 48%;
         display: flex;
         flex-direction: row;
-
         padding: 10px 25px;
     }
 
     .product-photo-container {
         max-width: 30%;
         align-self: center;
-
         margin-right: 30px;
-        
         max-width: 120px;
     }
 
@@ -1011,8 +997,6 @@ ul li {
         flex-direction: row;
         justify-content: center;
         margin-top: 40px;
-
-        /* width: 60%; */
     }
 
     #menu-grid {
@@ -1163,7 +1147,6 @@ ul li {
         width: 33%;
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
         row-gap: 6%;
     }
 
@@ -1180,7 +1163,6 @@ ul li {
     #columns {
         display: flex;
         flex-direction: row;
-        
         padding: 100px 0;
         width: 67%;
     }
@@ -1194,8 +1176,6 @@ ul li {
         display: flex;
         flex-direction: row;
         padding: 70px 0;
-
-
     }
 
     #socials-left-section {
