@@ -4,20 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
+    <aside id="checkout-aside">
+        <div id="blackout"></div>
+        <div id="checkout-aside-content">
+            <section id="checkout-top-section">
+                <p>Your Order</p>
+                <div id="checkout-close-container">
+                    <img id="checkout-close" src="images/x-solid.svg" height="16px" width="16px"/>
+                </div>
+            </section>
+    
+            <hr class="edge-to-edge">
+    
+            <section id="checkout-bottom-section">
+                <div id="checkout-empty">
+                    <p>We couldn't find any items in your cart.</p>
+                    <div id="order-and-arrow-container">
+                        <button id="start-order-button" class="design-button">Start an Order</button>
+                        <img id="checkout-drawn-arrow" src="images/Drawn Arrow.svg" width="85px" height="50px">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </aside>
+
     <nav>
         <section id="delivery-notice">
-            <img src="/images/Banner Wave.svg" id="banner-wave">
+            <img src="images/Banner Wave.svg" id="banner-wave">
             <p>We're open and available for takeaway & delivery. <a id="order-now">Order Now</a></p>
         </section>
 
         <section id="link-menu">
             <div id="nav-right">
                 <div id="logo-container">
-                    <a href="/"><img src="images/Logo.svg" id="logo"></a>
+                    <a href="index.html"><img src="images/Logo.svg" id="logo"></a>
                 </div>
                 <ul id="nav-list">
                     <li><a class="active">Home</a></li>
@@ -72,7 +96,10 @@
                     <img id="yum-yum" src="images/YumYum.png"> 
                     <h1>The home of fresh products</h1>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
-                    <button id="about-us-button" class="design-button">Learn about us</button>
+                    
+                    <form onsubmit="learnAboutUs(event)" method="get">
+                        <button id="about-us-button" class="design-button">Learn about us</button>
+                    </form>
                 </div>
                 <div id="right-fresh-section">
                     <img id="woman-eating-burger" src="images/Group 33.png">
@@ -297,7 +324,7 @@
                 <section class="footer-col">
                     <h6>COMPANY</h6>
                     <ul>
-                        <li><a id="footer-home">Home</a></li>
+                        <li><a href="index.html" id="footer-home">Home</a></li>
                         <li><a id="footer-order">Order</a></li>
                         <li><a id="footer-faq">FAQ</a></li>
                         <li><a id="footer-contact">Contact</a></li>
@@ -343,5 +370,7 @@
             </div>
         </section>
     </footer>
+
+    <script src="javascript/buttons.js"></script>
 </body>
 </html>
