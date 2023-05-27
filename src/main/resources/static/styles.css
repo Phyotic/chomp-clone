@@ -1,17 +1,17 @@
 @font-face {
     font-family: inter-bold;
-    src: url(/resources/fonts/Inter-Bold.woff);
+    src: url(fonts/Inter-Bold.woff);
     font-weight: bold;
 }
 
 @font-face {
     font-family: inter-regular;
-    src: url(/resources/fonts/Inter-Regular.woff);
+    src: url(fonts/Inter-Regular.woff);
 }
 
 @font-face {
     font-family: inter-semibold;
-    src: url(/resources/fonts/Inter-SemiBold.woff);
+    src: url(fonts/Inter-SemiBold.woff);
 }
 
 * {
@@ -44,7 +44,7 @@ a {
     border: none;
     background-color: var(--prime-color-blue);
     padding: 1.2rem 2.3rem;
-    background-image: url("/images/Button\ Wave.svg");
+    background-image: url("images/Button\ Wave.svg");
     color: white;
     border-radius: 5px;
     font-size: 1.1rem;
@@ -67,6 +67,9 @@ hr {
     font-family: inter-bold;
 }
 
+.edge-to-edge {
+    width: 100%;
+}
 
 /*Navigation-delivery notice*/
 #delivery-notice {
@@ -186,6 +189,83 @@ nav {
     margin: 20px 20px 15px 20px
 }
 
+/* Checkout Overlay */
+#checkout-aside {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+#blackout {
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: .8;
+}
+
+#checkout-aside-content {
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    position: absolute;
+    right: 0px;
+}
+
+#checkout-top-section {
+    display: flex;
+    padding: 15px 23px;
+}
+
+#checkout-top-section p {
+    font-family: inter-bold;
+    width: 80%;
+    font-size: 1.7rem;
+}
+
+#checkout-close-container {
+    width: 20%;
+    align-self: center;
+}
+
+#checkout-close {
+    float: right;
+}
+
+#checkout-bottom-section {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#checkout-empty {
+    display: flex;
+    flex-direction: column;
+}
+
+#order-and-arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+#start-order-button {
+    background-repeat: no-repeat;
+    width: 200px;
+}
+
+#checkout-drawn-arrow {
+    position: relative;
+    right: -100px;
+}
+
 /* First Impressions Section*/
 #first-impression {
     overflow-x: hidden;
@@ -253,7 +333,7 @@ nav {
 #fresh-products {
     position: relative;
     overflow: hidden;
-    background-image: url(/images/BG\ Shape\ Content.svg);
+    background-image: url(images/BG\ Shape\ Content.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1000%;
@@ -438,7 +518,7 @@ nav {
 }
 
 #menu-type-buttons .active-button {
-    background-image: url("/images/Button\ Wave.svg");
+    background-image: url("images/Button\ Wave.svg");
     background-color: var(--prime-color-blue);
     background-repeat: no-repeat;
     color: white;
@@ -566,7 +646,7 @@ nav {
     overflow: hidden;
     z-index: -1;
     padding: 120px 5px;
-    background-image: url(/images/BG\ Shape\ Content.svg);
+    background-image: url(images/BG\ Shape\ Content.svg);
     background-repeat: no-repeat;
     background-position: top center;
 }
@@ -626,7 +706,7 @@ nav {
 #order-image-container {
     height: 420px;
     overflow: hidden;
-    background-image: url(/images/Group\ Photo.png);
+    background-image: url(images/Group\ Photo.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
@@ -639,7 +719,7 @@ nav {
     padding: 70px 4%;
     z-index: 1;
     height: 420px;
-    background-image: url(/images/Pattern\ 01.svg);
+    background-image: url(images/Pattern\ 01.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
