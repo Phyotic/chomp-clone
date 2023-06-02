@@ -7,6 +7,27 @@ cartButton.addEventListener("click", toggleAside);
 blackout.addEventListener("click", toggleAside);
 checkoutClose.addEventListener("click", toggleAside);
 
+// Enable changing of menu tabs on home page.
+const burgersMenuButton = document.getElementById("burgersMenuButton")
+const sidesMenuButton = document.getElementById("sidesMenuButton")
+const drinksMenuButton = document.getElementById("drinksMenuButton")
+
+burgersMenuButton.addEventListener("click", populateMenu("menu-grid", "burgers"));
+sidesMenuButton.addEventListener("click", populateMenu("menu-grid", "sides"));
+drinksMenuButton.addEventListener("click", populateMenu("menu-grid", "drinks"));
+
+// Enable active feature on menu buttons.
+const menuButtons = [];
+menuButtons.push(burgersMenuButton);
+menuButtons.push(sidesMenuButton);
+menuButtons.push(drinksMenuButton);
+
+for(const button of menuButtons) {
+    button.addEventListener("click", () => {
+        toggleOneActive(button.id, menuButtons, "active-button");
+    });
+}
+
 // Load proper cart status element
 if(localStorage.getItem("cc-cart-items")) {
     loadCartContains();
@@ -133,5 +154,26 @@ async function populateMenu(parentName, kind) {
         });
     } else {
         console.error("Could not retrieve sub menu from storage.")
+    }
+}
+
+//Toggles the specified element from array as the only active member defined by activeClass.
+function toggleOneActive(elementName, array, activeClass) {
+    for(const element of array) {
+        let active = false;
+
+        if(element.id == elementName) {
+            active = true;
+        }
+
+        if(active) {
+            if(!element.classList.contains(activeClass)) {
+                element.classList.add(activeClass);
+            }
+        } else {
+            if(element.classList.contains(activeClass)) {
+                element.classList.remove(activeClass);
+            }
+        }
     }
 }
