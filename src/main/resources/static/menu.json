@@ -1,0 +1,93 @@
+[
+    {
+        "name" : "burgers",
+        "menuItems": [
+            {
+                "id" : 1,
+                "name": "Burger Dreams",
+                "price": 9.20,
+                "imageUrl": "images\\Burger 03.png"
+            },
+            {
+                "id" : 2,
+                "name": "Burger Waldo",
+                "price": 10.00,
+                "imageUrl": "images\\Burger 08.png"
+            },
+            {
+                "id" : 3,
+                "name": "Burger Cali",
+                "price": 8.00,
+                "imageUrl": "images\\Burger 04.png"
+            },
+            {
+                "id" : 4,
+                "name": "Burger Bacon Buddy",
+                "price": 9.99,
+                "imageUrl": "images\\Burger 06.png"
+            },
+            {
+                "id" : 5,
+                "name": "Burger Spicy",
+                "price": 9.20,
+                "imageUrl": "images\\Burger 02.png"
+            },
+            {
+                "id" : 6,
+                "name": "Burger Classic",
+                "price": 8.00,
+                "imageUrl": "images\\Burger 01.png"
+            }
+        ]
+    },
+    {
+        "name": "sides",
+        "menuItems": [
+            {
+                "name": "Salad Ceasar",
+                "price": 6.00,
+                "imageUrl": ""
+            },
+            {
+                "name": "Beans Slow Cooked",
+                "price": 4.00,
+                "imageUrl": ""
+            },
+            {
+                "name": "Fries Cheese",
+                "price": 5.00,
+                "imageUrl": ""
+            },
+            {
+                "name": "Fries Rustic",
+                "price": 4.00,
+                "imageUrl": ""
+            }
+        ]
+    },
+    {
+        "name" : "drinks",
+        "menuItems": [
+            {
+                "name": "Drink Fig & Lime",
+                "price": 4.00,
+                "imageUrl": ""
+            },
+            {
+                "name": "Drink Liquor",
+                "price": 7.00,
+                "imageUrl": ""
+            },
+            {
+                "name": "Drink Lime",
+                "price": 4.00,
+                "imageUrl": ""
+            },
+            {
+                "name": "Drink Cola",
+                "price": 3.00,
+                "imageUrl": ""
+            }
+        ]
+    }
+]

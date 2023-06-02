@@ -71,6 +71,73 @@ hr {
     width: 100%;
 }
 
+/* == Templates CSS ==*/
+
+/* Empty Cart */
+#checkout-empty {
+    display: flex;
+    flex-direction: column;
+}
+
+#order-and-arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+#start-order-button {
+    background-repeat: no-repeat;
+    width: 200px;
+}
+
+#checkout-drawn-arrow {
+    position: relative;
+    right: -100px;
+}
+
+/* Non Empty Cart */
+#non-empty-cart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#items-container {
+    flex: 1;
+}
+
+#continue {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 25px;
+}
+
+#checkout-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+}
+
+#total-text {
+    opacity: .8;
+    width: 50%;
+    text-align: left;
+}
+
+#subtotal {
+    width: 50%;
+    font-weight: 700;
+    text-align: right;
+}
+
+#continue-button {
+    background-repeat: no-repeat;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 15px;
+}
+
 /*Navigation-delivery notice*/
 #delivery-notice {
     overflow-x: hidden;
@@ -214,11 +281,14 @@ nav {
     max-width: 500px;
     position: absolute;
     right: 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 #checkout-top-section {
     display: flex;
     padding: 15px 23px;
+    flex: 0;
 }
 
 #checkout-top-section p {
@@ -234,36 +304,16 @@ nav {
 
 #checkout-close {
     float: right;
+    cursor: pointer;
 }
 
 #checkout-bottom-section {
-    height: 100%;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#checkout-empty {
-    display: flex;
-    flex-direction: column;
-}
-
-#order-and-arrow-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 50px;
-}
-
-#start-order-button {
-    background-repeat: no-repeat;
-    width: 200px;
-}
-
-#checkout-drawn-arrow {
-    position: relative;
-    right: -100px;
+    overflow: hidden;
+    flex: 1;
 }
 
 /* First Impressions Section*/
@@ -515,6 +565,7 @@ nav {
     background-image: none;
     padding: 0 0.8rem;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 #menu-type-buttons .active-button {
