@@ -12,10 +12,6 @@ const burgersMenuButton = document.getElementById("burgersMenuButton")
 const sidesMenuButton = document.getElementById("sidesMenuButton")
 const drinksMenuButton = document.getElementById("drinksMenuButton")
 
-burgersMenuButton.addEventListener("click", populateMenu("menu-grid", "burgers"));
-sidesMenuButton.addEventListener("click", populateMenu("menu-grid", "sides"));
-drinksMenuButton.addEventListener("click", populateMenu("menu-grid", "drinks"));
-
 // Enable active feature on menu buttons.
 const menuButtons = [];
 menuButtons.push(burgersMenuButton);
@@ -38,8 +34,19 @@ if(localStorage.getItem("cc-cart-items")) {
 
 // Fetch the menu and load it into local storage.
 fetchMenuToStorage()
-.then(() => populateMenu("menu-grid", "burgers")
-    .catch(error => console.error("Could not populate menu.", error)))
+    .then(() => {
+        populateMenu("menu-grid", "burgers");
+        burgersMenuButton.addEventListener("click", () => {
+            populateMenu("menu-grid", "burgers");
+        });
+        sidesMenuButton.addEventListener("click", () => {
+            populateMenu("menu-grid", "sides");
+        });
+        drinksMenuButton.addEventListener("click", () => {
+            populateMenu("menu-grid", "drinks");
+        });
+    })
+    .catch(error => console.error("Could not populate menu.", error))
 .catch(error => console.error("Could not load/retrieve menu: ", error));
 
 // == FUNCTIONS ==
@@ -100,11 +107,9 @@ function loadCartEmpty() {
 
 //Fetch the complete menu and save to local storage.
 async function fetchMenuToStorage() {
-    fetch("menu.json")
-    .then((response) => response.text())
-    .then((ccMenu) => {
-        localStorage.setItem("cc-menu", ccMenu);
-    })
+    const response = await fetch("menu.json");
+    const ccMenu = await response.text();
+    localStorage.setItem("cc-menu", ccMenu);
 }
 
 //Load the specified sub menu from local storage.
@@ -153,7 +158,7 @@ async function populateMenu(parentName, kind) {
             console.error("Could not retrieve template resource.", error);
         });
     } else {
-        console.error("Could not retrieve sub menu from storage.")
+        console.error("Could not retrieve sub menu from storage.");
     }
 }
 
