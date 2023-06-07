@@ -27,27 +27,31 @@ for(const button of menuButtons) {
 // Load proper cart status element
 if(localStorage.getItem("cc-cart-items")) {
     loadCartContains();
-    //TODO: call fillCart();
+    loadCartItems();
 } else {
     loadCartEmpty();
 }
 
-// Fetch the menu and load it into local storage.
-fetchMenuToStorage()
-    .then(() => {
-        populateMenu("menu-grid", "burgers");
-        burgersMenuButton.addEventListener("click", () => {
-            populateMenu("menu-grid", "burgers");
-        });
-        sidesMenuButton.addEventListener("click", () => {
-            populateMenu("menu-grid", "sides");
-        });
-        drinksMenuButton.addEventListener("click", () => {
-            populateMenu("menu-grid", "drinks");
-        });
-    })
-    .catch(error => console.error("Could not populate menu.", error))
-.catch(error => console.error("Could not load/retrieve menu: ", error));
+// Fetch the menu, load it into local storage, display it, add handlers to add-to-cart buttons.
+(async () => {
+    await fetchMenuToStorage();
+    await populateMenu("menu-grid", "burgers");
+    document.getElementById("menu-grid").addEventListener("submit", async (event) => {
+        await handleSubmit(event, "addToCartForm");
+    });
+
+    burgersMenuButton.addEventListener("click", async () => {
+        await populateMenu("menu-grid", "burgers");
+    });
+
+    sidesMenuButton.addEventListener("click", async () => {
+        await populateMenu("menu-grid", "sides");
+    });
+
+    drinksMenuButton.addEventListener("click", async () => {
+        await populateMenu("menu-grid", "drinks");
+    });
+})();
 
 // == FUNCTIONS ==
 
@@ -63,7 +67,7 @@ function toggleAside(event) {
 }
 
 //Load non-empty cart element
-function loadCartContains() {
+async function loadCartContains() {
     const checkoutBottomSection = document.getElementById("checkout-bottom-section");
 
     checkoutBottomSection.style.alignItems = "initial";
@@ -81,13 +85,8 @@ function loadCartContains() {
     })
 }
 
-//TODO: Fill cart with stored items
-function fillCart() {
-
-}
-
 //Load empty cart element
-function loadCartEmpty() {
+async function loadCartEmpty() {
     const checkoutBottomSection = document.getElementById("checkout-bottom-section");
     fetch("../templates/EmptyCart.html")
     .then(response => response.text())
@@ -141,22 +140,18 @@ async function populateMenu(parentName, kind) {
         const parent = document.getElementById(parentName);
         parent.replaceChildren();
     
-        fetch("../templates/MenuItem.html")
-        .then((response) => response.text())
-        .then((template) => {
-            for(const item of itemsArray) {
-                let copyTemp = template.slice();
-                let newItem = copyTemp
-                    .replace("{{itemName}}", item.name)
-                    .replace("{{itemPrice}}", item.price.toFixed(2))
-                    .replace("{{imageSource}}", item.imageUrl);
-    
-                parent.innerHTML += newItem;
-            }
-        })
-        .catch(error => {
-            console.error("Could not retrieve template resource.", error);
-        });
+        const response = await fetch("../templates/MenuItem.html")
+        const template = await response.text();
+
+        for(const item of itemsArray) {
+            let copyTemp = template.slice();
+            let newItem = copyTemp
+                .replaceAll("{{itemName}}", item.name)
+                .replaceAll("{{itemPrice}}", item.price.toFixed(2))
+                .replace("{{imageSource}}", item.imageUrl);
+
+            parent.innerHTML += newItem;
+        }
     } else {
         console.error("Could not retrieve sub menu from storage.");
     }
@@ -181,4 +176,94 @@ function toggleOneActive(elementName, array, activeClass) {
             }
         }
     }
+}
+
+async function handleSubmit(event, formName) {
+    if(event.target.classList.contains(formName)) {
+        event.preventDefault();
+
+        const button = event.target.querySelector(".add-to-cart-button");
+        button.value = "Adding to cart...";
+
+        const item = {}
+        item.itemName = event.target.querySelector('input[name="itemName"]').value;
+        item.itemPrice = event.target.querySelector('input[name="itemPrice"]').value;
+        item.quantity = event.target.querySelector('input[name="quantity"]').value;
+
+        saveItemToLocalStorage(item);
+        await addItemToCart(item)
+        toggleAside();
+        button.value = "Add to Cart";
+    }
+}
+
+//Saves the item to the local storage.
+function saveItemToLocalStorage(item) {
+    let items = localStorage.getItem("cc-cart-items");
+
+    if(items) {
+        const jItems = JSON.parse(items);
+
+        let found = false;
+
+        for(curItem of jItems) {
+            if(curItem.itemName === item.itemName) {
+                let q = parseInt(curItem.quantity);
+                q += parseInt(item.quantity);
+                curItem.quantity = q;
+                found = true;
+                break;
+            }
+        }
+
+        if(!found) {
+            jItems.push(item);
+        }
+
+        items = jItems;
+    } else {
+        items = [];
+        items.push(item)
+    }
+
+    items = JSON.stringify(items);
+    localStorage.setItem("cc-cart-items", items);
+}
+
+//Loads templates for items in "cc-cart-items".
+async function loadCartItems() {
+    const emptyCart = document.getElementById("checkout-empty");
+
+    if(emptyCart){
+        await loadCartContains();
+    }
+
+    const itemsContainer = document.getElementById("items-container");
+    const children = itemsContainer.childElementCount;
+
+    if(localStorage.getItem("cc-cart-items" != children)) {
+        // const response = await fetch();
+
+        itemsContainer.replaceChildren();
+    }
+
+    /*
+    if checkout empty exists
+        loadCartContains()
+
+    if cc-cart-items != children of items-container
+        reload all items
+    */
+}
+
+async function addItemToCart(item) {
+
+}
+
+async function removeItemFromCart(item) {
+
+}
+
+async function updateItemFromCart(item) {
+
 }

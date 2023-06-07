@@ -11,8 +11,12 @@
         <p class="product-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 
         <div class="quantity-add-button">
-            <input type="number" class="quantity" min="0" value="1">
-            <button class="design-button add-to-cart-button">Add to Cart</button>
+            <form class="addToCartForm">
+                <input type="hidden" name="itemName" value="{{itemName}}">
+                <input type="hidden" name="itemPrice" value="{{itemPrice}}">
+                <input type="number" class="quantity" name="quantity" min="1" value="1">
+                <input type="submit" class="design-button add-to-cart-button" value="Add to Cart"></button>
+            </form>
         </div>
     </div>
 </div>
