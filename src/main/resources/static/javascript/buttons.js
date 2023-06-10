@@ -77,12 +77,25 @@ async function loadCartContains() {
     const response = await fetch("../templates/NonEmptyCart.html");
     const nonEmptyTemplate = await response.text();
     checkoutBottomSection.innerHTML = nonEmptyTemplate;
+
+    const itemsContainer = document.getElementById("items-container");
+
+    itemsContainer.addEventListener("click", async (event) => {
+        if(event.target.classList.contains("cart-remove")) {
+            const formParent = event.target.parentElement.parentElement;
+            const itemName = formParent.querySelector('input[name="itemName"]').value;
+
+            removeItemFromLocalStorage(itemName);
+            removeItemFromCart(event);
+        }
+    });
 }
 
 //Load empty cart element
 async function loadCartEmpty() {
     const checkoutBottomSection = document.getElementById("checkout-bottom-section");
-    
+    checkoutBottomSection.style.alignItems = "center";
+
     const response = await fetch("../templates/EmptyCart.html");
     const emptyTemplate = await response.text();
     checkoutBottomSection.innerHTML = emptyTemplate;
@@ -215,6 +228,26 @@ function saveItemToLocalStorage(item) {
     localStorage.setItem("cc-cart-items", items);
 }
 
+//Removes the item from the local storage.
+function removeItemFromLocalStorage(itemName) {
+    const itemsInCart = JSON.parse(localStorage.getItem("cc-cart-items"));
+
+    for(const index in itemsInCart) {
+        if(itemsInCart[index].name === itemName) {
+            itemsInCart.splice(index, 1);
+
+            if(itemsInCart.length === 0) {
+                localStorage.removeItem("cc-cart-items");
+            } else {
+                const strItems = JSON.stringify(itemsInCart);
+                localStorage.setItem("cc-cart-items", strItems);
+            }
+            
+            break;
+        }
+    }
+}
+
 //Loads templates for items in "cc-cart-items".
 async function loadCartItems() {
     const nonEmptyCart = document.getElementById("non-empty-cart");
@@ -295,7 +328,7 @@ async function addItemToCart(item) {
     if(!nonEmptyCart){
         await loadCartContains();
     }
-    const itemsContainer = document.getElementById("items-container");
+    let itemsContainer = document.getElementById("items-container");
     const numDisplayed = itemsContainer.getElementsByClassName("cart-item-container").length;
 
     const stringCartItems = localStorage.getItem("cc-cart-items");
@@ -325,8 +358,19 @@ async function addItemToCart(item) {
     }
 }
 
-async function removeItemFromCart(item) {
+//Removes the item from displayed cart.
+async function removeItemFromCart(event) {
+    const t = event.target;
+    if(t.classList.contains("cart-remove")) {
+        t.parentElement.parentElement.remove();
 
+        const itemsContainer = document.getElementById("items-container");
+        const items = itemsContainer.getElementsByClassName("cart-item-container");
+
+        if(!items.length) {
+            loadCartEmpty();
+        }
+    }
 }
 
 async function updateItemFromCart(item) {
