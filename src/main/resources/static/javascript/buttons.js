@@ -26,8 +26,10 @@ for(const button of menuButtons) {
 
 // Load proper cart status element
 if(localStorage.getItem("cc-cart-items")) {
-    loadCartContains();
-    loadCartItems();
+    (async () => {
+        await loadCartContains();
+        loadCartItems();
+    })();
 } else {
     loadCartEmpty();
 }
@@ -72,36 +74,18 @@ async function loadCartContains() {
 
     checkoutBottomSection.style.alignItems = "initial";
 
-    fetch("../templates/NonEmptyCart.html")
-    .then(response => response.text())
-    .then(nonEmptyTemplate => {
-        if(checkoutBottomSection.childElementCount === 0) {
-            checkoutBottomSection.innerHTML = nonEmptyTemplate;
-        } else {
-            if(!checkoutBottomSection.firstElementChild.id.match("non-empty-cart")) {
-                checkoutBottomSection.replaceChild(checkoutBottomSection.firstElementChild, nonEmptyTemplate);
-            }
-        }
-    })
+    const response = await fetch("../templates/NonEmptyCart.html");
+    const nonEmptyTemplate = await response.text();
+    checkoutBottomSection.innerHTML = nonEmptyTemplate;
 }
 
 //Load empty cart element
 async function loadCartEmpty() {
     const checkoutBottomSection = document.getElementById("checkout-bottom-section");
-    fetch("../templates/EmptyCart.html")
-    .then(response => response.text())
-    .then((emptyTemplate) => {
-        if(checkoutBottomSection.childElementCount === 0) {
-            checkoutBottomSection.innerHTML = emptyTemplate;
-        } else {
-            if(!checkoutBottomSection.firstElementChild.id.match("checkout-empty")) {
-                checkoutBottomSection.replaceChild(checkoutBottomSection.firstElementChild, template);
-            }
-        }
-    })
-    .catch(error => {
-        console.error(error);
-    });
+    
+    const response = await fetch("../templates/EmptyCart.html");
+    const emptyTemplate = await response.text();
+    checkoutBottomSection.innerHTML = emptyTemplate;
 }
 
 //Fetch the complete menu and save to local storage.
@@ -148,7 +132,7 @@ async function populateMenu(parentName, kind) {
             let newItem = copyTemp
                 .replaceAll("{{itemName}}", item.name)
                 .replaceAll("{{itemPrice}}", item.price.toFixed(2))
-                .replace("{{imageSource}}", item.imageUrl);
+                .replaceAll("{{imageSource}}", item.imageUrl);
 
             parent.innerHTML += newItem;
         }
@@ -186,12 +170,13 @@ async function handleSubmit(event, formName) {
         button.value = "Adding to cart...";
 
         const item = {}
-        item.itemName = event.target.querySelector('input[name="itemName"]').value;
-        item.itemPrice = event.target.querySelector('input[name="itemPrice"]').value;
-        item.quantity = event.target.querySelector('input[name="quantity"]').value;
+        item.name = event.target.querySelector('input[name="itemName"]').value;
+        item.price = event.target.querySelector('input[name="itemPrice"]').value;
+        item.quantity = parseInt(event.target.querySelector('input[name="quantity"]').value);
+        item.imageUrl = event.target.querySelector('input[name="imageSource"]').value;
 
         saveItemToLocalStorage(item);
-        await addItemToCart(item)
+        await addItemToCart(item);
         toggleAside();
         button.value = "Add to Cart";
     }
@@ -207,7 +192,7 @@ function saveItemToLocalStorage(item) {
         let found = false;
 
         for(curItem of jItems) {
-            if(curItem.itemName === item.itemName) {
+            if(curItem.name === item.name) {
                 let q = parseInt(curItem.quantity);
                 q += parseInt(item.quantity);
                 curItem.quantity = q;
@@ -232,32 +217,112 @@ function saveItemToLocalStorage(item) {
 
 //Loads templates for items in "cc-cart-items".
 async function loadCartItems() {
-    const emptyCart = document.getElementById("checkout-empty");
+    const nonEmptyCart = document.getElementById("non-empty-cart");
 
-    if(emptyCart){
+    if(!nonEmptyCart){
         await loadCartContains();
     }
 
     const itemsContainer = document.getElementById("items-container");
-    const children = itemsContainer.childElementCount;
+    const numDisplayed = itemsContainer.childElementCount;
 
-    if(localStorage.getItem("cc-cart-items" != children)) {
-        // const response = await fetch();
+    const stringCartItems = localStorage.getItem("cc-cart-items");
+    const jsonCartItems = JSON.parse(stringCartItems);
+    const cartItemsLen = jsonCartItems.length;
 
-        itemsContainer.replaceChildren();
+    const response = await fetch("../templates/CartItem.html");
+    const template = await response.text();
+
+    if(cartItemsLen != numDisplayed) {
+        if(cartItemsLen > numDisplayed) {
+            const children = itemsContainer.querySelectorAll("cart-item-container");
+
+            for(child of children) {
+
+                const dispName = child.querySelector('input[name="itemName"]').value; 
+                
+                for(cartItem of jsonCartItems) {
+                    if(dispName == cartItem.itemName) {
+                        jsonCartItems.remove(cartItem);
+                    }
+                }
+            }
+
+            for(item of jsonCartItems) {
+                let temp = template.slice()
+                    .replaceAll("{{itemName}}", item.name)
+                    .replaceAll("{{itemPrice}}", item.price)
+                    .replaceAll("{{itemQuantity}}", item.quantity)
+                    .replaceAll("{{imageSource}}", item.imageUrl);
+                
+                itemsContainer.innerHTML += temp;
+            }
+        } else if(cartItemsLen < numDisplayed) { //Remove
+
+        }
+    } else { //Update?
+
+    }
+    /*
+    //Adding to something
+    disp: 1 cart: 2 //remove disp from cart, add cart items left to disp
+    disp: 1 cart 10 //remove disp from cart, add cart items left to disp
+
+    //Removing from something
+    disp: 3 cart: 2 //n^2 
+    disp: 5 cart: 1 //n^2
+
+    //Removing to nothing
+    dis: 1 cart: 0 //remove all children
+
+    //Updating
+    updates: add 1, add n, remove 1, remove n //find x in cart, update
+
+    function checkEmpty() {
+        if children = 0, loadEmptyCart()
     }
 
-    /*
-    if checkout empty exists
-        loadCartContains()
 
     if cc-cart-items != children of items-container
         reload all items
     */
 }
 
+//Manages the display of the item to the cart; if it exists already, add to the existing quantity.
 async function addItemToCart(item) {
+    const nonEmptyCart = document.getElementById("non-empty-cart");
 
+    if(!nonEmptyCart){
+        await loadCartContains();
+    }
+    const itemsContainer = document.getElementById("items-container");
+    const numDisplayed = itemsContainer.getElementsByClassName("cart-item-container").length;
+
+    const stringCartItems = localStorage.getItem("cc-cart-items");
+    const jsonCartItems = JSON.parse(stringCartItems);
+    const cartItemsLen = jsonCartItems.length;
+
+    if(numDisplayed < cartItemsLen) {
+        const response = await fetch("../templates/CartItem.html");
+        let template = await response.text();
+        const temp = template
+            .replaceAll("{{imageSource}}", item.imageUrl)
+            .replaceAll("{{itemName}}", item.name)
+            .replaceAll("{{itemPrice}}", item.price)
+            .replaceAll("{{itemQuantity}}", item.quantity);
+
+        itemsContainer.innerHTML += temp;
+    } else {
+        const forms = itemsContainer.getElementsByClassName("update-cart-item");
+
+        for(const form of forms) {
+            if(form.querySelector('input[name="itemName"]').value === item.name) {
+                let q = parseInt(form.querySelector('input[name="itemQuantity"]').value);
+                q += item.quantity;
+                form.querySelector('input[name="itemQuantity"]').value = q;
+            }
+        }
+    }
 }
 
 async function removeItemFromCart(item) {
