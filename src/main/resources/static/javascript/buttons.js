@@ -236,7 +236,7 @@ function removeItemFromLocalStorage(itemName) {
         if(itemsInCart[index].name === itemName) {
             itemsInCart.splice(index, 1);
 
-            if(itemsInCart.length === 0) {
+            if(itemsInCart.length === 0) {112222
                 localStorage.removeItem("cc-cart-items");
             } else {
                 const strItems = JSON.stringify(itemsInCart);
@@ -350,9 +350,18 @@ async function addItemToCart(item) {
 
         for(const form of forms) {
             if(form.querySelector('input[name="itemName"]').value === item.name) {
-                let q = parseInt(form.querySelector('input[name="itemQuantity"]').value);
-                q += item.quantity;
-                form.querySelector('input[name="itemQuantity"]').value = q;
+                console.log(form);
+
+                for(const e of form) {
+                    if(e.name === "itemQuantity") {
+                        let oldQ = e.value;
+                        const newQ = parseInt(e.value) + item.quantity;
+
+                        let outer = e.outerHTML;
+                        const replace = outer.replace('value="' + oldQ + '"', 'value="' + newQ + '"');
+                        e.outerHTML = replace;
+                    }
+                }
             }
         }
     }
