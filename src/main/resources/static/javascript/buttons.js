@@ -28,7 +28,9 @@ for(const button of menuButtons) {
 if(localStorage.getItem("cc-cart-items")) {
     (async () => {
         await loadCartContains();
-        loadCartItems();
+        await loadCartItems();
+        addQuantityHandler();
+        updateTotal();
     })();
 } else {
     loadCartEmpty();
@@ -81,12 +83,14 @@ async function loadCartContains() {
     const itemsContainer = document.getElementById("items-container");
 
     itemsContainer.addEventListener("click", async (event) => {
-        if(event.target.classList.contains("cart-remove")) {
-            const formParent = event.target.parentElement.parentElement;
-            const itemName = formParent.querySelector('input[name="itemName"]').value;
+        const t = event.target;
+
+        if(t.classList.contains("cart-remove")) {
+            const itemContainer = t.parentElement.parentElement;
+            const itemName = itemContainer.querySelector('input[name="itemName"]').value;
 
             removeItemFromLocalStorage(itemName);
-            removeItemFromCart(event);
+            removeItemFromCart(itemContainer);
         }
     });
 }
@@ -237,13 +241,12 @@ function removeItemFromLocalStorage(itemName) {
         if(itemsInCart[index].name === itemName) {
             itemsInCart.splice(index, 1);
 
-            if(itemsInCart.length === 0) {112222
+            if(itemsInCart.length === 0) {
                 localStorage.removeItem("cc-cart-items");
             } else {
                 const strItems = JSON.stringify(itemsInCart);
                 localStorage.setItem("cc-cart-items", strItems);
             }
-            
             break;
         }
     }
@@ -291,35 +294,8 @@ async function loadCartItems() {
                 
                 itemsContainer.innerHTML += temp;
             }
-        } else if(cartItemsLen < numDisplayed) { //Remove
-
         }
-    } else { //Update?
-
     }
-    /*
-    //Adding to something
-    disp: 1 cart: 2 //remove disp from cart, add cart items left to disp
-    disp: 1 cart 10 //remove disp from cart, add cart items left to disp
-
-    //Removing from something
-    disp: 3 cart: 2 //n^2 
-    disp: 5 cart: 1 //n^2
-
-    //Removing to nothing
-    dis: 1 cart: 0 //remove all children
-
-    //Updating
-    updates: add 1, add n, remove 1, remove n //find x in cart, update
-
-    function checkEmpty() {
-        if children = 0, loadEmptyCart()
-    }
-
-
-    if cc-cart-items != children of items-container
-        reload all items
-    */
 }
 
 //Manages the display of the item to the cart; if it exists already, add to the existing quantity.
@@ -346,6 +322,8 @@ async function addItemToCart(item) {
             .replaceAll("{{itemQuantity}}", item.quantity);
 
         itemsContainer.innerHTML += temp;
+
+        addQuantityHandler();
     } else {
         const forms = itemsContainer.getElementsByClassName("update-cart-item");
 
@@ -362,44 +340,102 @@ async function addItemToCart(item) {
                         break;
                     }
                 }
-
                 break;
             }
         }
     }
 }
 
-//Removes the item from displayed cart.
-async function removeItemFromCart(event) {
-    const t = event.target;
-    if(t.classList.contains("cart-remove")) {
-        t.parentElement.parentElement.remove();
+//Removes the item from the displayed cart.
+async function removeItemFromCart(cartItem) {
+    cartItem.remove();
+    
+    const itemsContainer = document.getElementById("items-container");
+    const items = itemsContainer.getElementsByClassName("cart-item-container");
+
+    if(!items.length) {
+        loadCartEmpty();
+    } else {
         updateTotal();
-
-        const itemsContainer = document.getElementById("items-container");
-        const items = itemsContainer.getElementsByClassName("cart-item-container");
-
-        if(!items.length) {
-            loadCartEmpty();
-        }
     }
-}
-
-async function updateItemFromCart(item) {
-
 }
 
 //Update total price of items in the cart.
 function updateTotal() {
     const jItems = JSON.parse(localStorage.getItem("cc-cart-items"));
 
+    let total = 0;
+
     if(jItems) {
-        let total = 0;
         for(const item of jItems) {
             total += parseFloat(item.price) * parseFloat(item.quantity);
         }
+    }
+
+    let totalElement = document.getElementById("subtotal");
+    totalElement.innerHTML = "$" + total.toFixed(2) + " USD";
+}
+
+//Adds handlers to the quantity change input in the cart items.
+function addQuantityHandler() {
+    const itemsContainer = document.getElementById("items-container");
+    const items = itemsContainer.getElementsByClassName("cart-item-container");
+
+    for(const item of items) {
+        const children = item.children;
+
+        for(const e of children) {
+            if(e.classList.contains("update-cart-item")) {
+                item.addEventListener("submit", (event) => {
+                    quantitySubmit(event);
+                });
+            }
+        }
+    }
+}
+
+//Handles the quantity change of an item in the cart.
+function quantitySubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const children = form.children;
+
+    let itemName = "";
+    for(const child of children) {
+        if(child.name === "itemName") {
+            itemName = child.value;
+        }
+
+        if(child.name === "itemQuantity") {
+            if(child.value == 0) {
+                removeItemFromLocalStorage(itemName);
+                removeItemFromCart(form.parentElement);
+            } else {
+                let outer = child.outerHTML;
+                const newQuantity = child.valueAsNumber;
+
+                child.outerHTML = outer.replace(
+                    'value="' + child.defaultValue + '"',
+                    'value="' + newQuantity + '"');
     
-        let totalElement = document.getElementById("subtotal");
-        totalElement.innerHTML = "$" + total.toFixed(2) + " USD";
+                setItemInLocalStorage(itemName, newQuantity)
+            }
+            break;
+        }
+    }
+    updateTotal();
+}
+
+//Sets the item in local storage to the specified quantity.
+function setItemInLocalStorage(itemName, quantity) {
+    const jItems = JSON.parse(localStorage.getItem("cc-cart-items"));
+
+    for(const item of jItems) {
+        if(item.name === itemName) {
+            item.quantity = quantity;
+            localStorage.setItem("cc-cart-items", JSON.stringify(jItems));
+            break;
+        }
     }
 }
