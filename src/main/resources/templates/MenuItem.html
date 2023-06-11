@@ -1,0 +1,23 @@
+<div class="product-card">
+    <div class="product-photo-container">
+        <img class="menu-product-photo" src="{{imageSource}}">
+    </div>
+
+    <div class="right-section">
+        <div class="product-name-price">
+            <h2 class="product-name">{{itemName}}</h2>
+            <p class="product-price highlight-blue">$ {{itemPrice}} USD</p>
+        </div>
+        <p class="product-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+        <div class="quantity-add-button">
+            <form class="addToCartForm">
+                <input type="hidden" name="itemName" value="{{itemName}}">
+                <input type="hidden" name="itemPrice" value="{{itemPrice}}">
+                <input type="hidden" name="imageSource" value="{{imageSource}}">
+                <input type="number" class="quantity" name="quantity" min="1" value="1">
+                <input type="submit" class="design-button add-to-cart-button" value="Add to Cart"></button>
+            </form>
+        </div>
+    </div>
+</div>

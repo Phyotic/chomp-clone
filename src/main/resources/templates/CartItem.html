@@ -1,0 +1,15 @@
+<div class="cart-item-container">
+    <img class="cart-photo" src="{{imageSource}}">
+
+    <div class="namePriceRemove">
+        <p class="cart-item-name">{{itemName}}</p>
+        <p class="cart-item-price">$ {{itemPrice}} USD</p>
+        <button class="cart-remove">Remove</button>
+    </div>
+
+    <form class="update-cart-item">
+        <input type="hidden" name="itemName" value="{{itemName}}">
+        <input type="hidden" name="itemPrice" value="{{itemPrice}}">
+        <input class="cart-quantity" type="number" name="itemQuantity" value="{{itemQuantity}}">
+    </form>
+</div>
