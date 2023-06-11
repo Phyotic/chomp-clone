@@ -190,6 +190,7 @@ async function handleSubmit(event, formName) {
 
         saveItemToLocalStorage(item);
         await addItemToCart(item);
+        updateTotal();
         toggleAside();
         button.value = "Add to Cart";
     }
@@ -350,8 +351,6 @@ async function addItemToCart(item) {
 
         for(const form of forms) {
             if(form.querySelector('input[name="itemName"]').value === item.name) {
-                console.log(form);
-
                 for(const e of form) {
                     if(e.name === "itemQuantity") {
                         let oldQ = e.value;
@@ -360,8 +359,11 @@ async function addItemToCart(item) {
                         let outer = e.outerHTML;
                         const replace = outer.replace('value="' + oldQ + '"', 'value="' + newQ + '"');
                         e.outerHTML = replace;
+                        break;
                     }
                 }
+
+                break;
             }
         }
     }
@@ -372,6 +374,7 @@ async function removeItemFromCart(event) {
     const t = event.target;
     if(t.classList.contains("cart-remove")) {
         t.parentElement.parentElement.remove();
+        updateTotal();
 
         const itemsContainer = document.getElementById("items-container");
         const items = itemsContainer.getElementsByClassName("cart-item-container");
@@ -384,4 +387,19 @@ async function removeItemFromCart(event) {
 
 async function updateItemFromCart(item) {
 
+}
+
+//Update total price of items in the cart.
+function updateTotal() {
+    const jItems = JSON.parse(localStorage.getItem("cc-cart-items"));
+
+    if(jItems) {
+        let total = 0;
+        for(const item of jItems) {
+            total += parseFloat(item.price) * parseFloat(item.quantity);
+        }
+    
+        let totalElement = document.getElementById("subtotal");
+        totalElement.innerHTML = "$" + total.toFixed(2) + " USD";
+    }
 }
