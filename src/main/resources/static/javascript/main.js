@@ -179,6 +179,7 @@ function toggleOneActive(elementName, array, activeClass) {
     }
 }
 
+//Handles add-to-cart button submit on homepage.
 async function handleSubmit(event, formName) {
     if(event.target.classList.contains(formName)) {
         event.preventDefault();
