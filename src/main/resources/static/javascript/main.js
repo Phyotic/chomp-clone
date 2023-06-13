@@ -76,7 +76,7 @@ async function loadCartContains() {
 
     checkoutBottomSection.style.alignItems = "initial";
 
-    const response = await fetch("../templates/NonEmptyCart.html");
+    const response = await fetch("/templates/NonEmptyCart.html");
     const nonEmptyTemplate = await response.text();
     checkoutBottomSection.innerHTML = nonEmptyTemplate;
 
@@ -93,6 +93,11 @@ async function loadCartContains() {
             removeItemFromCart(itemContainer);
         }
     });
+
+    const checkoutButton = document.getElementById("continue-button");
+    checkoutButton.addEventListener("click", (event) => {
+        handleCheckout(event);
+    })
 }
 
 //Load empty cart element
@@ -100,7 +105,7 @@ async function loadCartEmpty() {
     const checkoutBottomSection = document.getElementById("checkout-bottom-section");
     checkoutBottomSection.style.alignItems = "center";
 
-    const response = await fetch("../templates/EmptyCart.html");
+    const response = await fetch("/templates/EmptyCart.html");
     const emptyTemplate = await response.text();
     checkoutBottomSection.innerHTML = emptyTemplate;
 }
@@ -141,7 +146,7 @@ async function populateMenu(parentName, kind) {
         const parent = document.getElementById(parentName);
         parent.replaceChildren();
     
-        const response = await fetch("../templates/MenuItem.html")
+        const response = await fetch("/templates/MenuItem.html")
         const template = await response.text();
 
         for(const item of itemsArray) {
@@ -268,7 +273,7 @@ async function loadCartItems() {
     const jsonCartItems = JSON.parse(stringCartItems);
     const cartItemsLen = jsonCartItems.length;
 
-    const response = await fetch("../templates/CartItem.html");
+    const response = await fetch("/templates/CartItem.html");
     const template = await response.text();
 
     if(cartItemsLen != numDisplayed) {
@@ -314,7 +319,7 @@ async function addItemToCart(item) {
     const cartItemsLen = jsonCartItems.length;
 
     if(numDisplayed < cartItemsLen) {
-        const response = await fetch("../templates/CartItem.html");
+        const response = await fetch("/templates/CartItem.html");
         let template = await response.text();
         const temp = template
             .replaceAll("{{imageSource}}", item.imageUrl)
@@ -439,4 +444,20 @@ function setItemInLocalStorage(itemName, quantity) {
             break;
         }
     }
+}
+
+//Handles the "checkout" of the cart items.
+async function handleCheckout(event) {
+    const url = "/checkout";
+    const order = JSON.parse(localStorage.getItem("cc-cart-items"));
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: order
+    });
+
+    alert("Responded with: " + response.status);
 }
