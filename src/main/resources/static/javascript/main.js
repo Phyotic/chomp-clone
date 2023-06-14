@@ -449,7 +449,7 @@ function setItemInLocalStorage(itemName, quantity) {
 //Handles the "checkout" of the cart items.
 async function handleCheckout(event) {
     const url = "/checkout";
-    const order = JSON.parse(localStorage.getItem("cc-cart-items"));
+    const order = localStorage.getItem("cc-cart-items");
 
     const response = await fetch(url, {
         method: "POST",
@@ -458,6 +458,7 @@ async function handleCheckout(event) {
         },
         body: order
     });
+    const data = await response.json();
 
-    alert("Responded with: " + response.status);
+    alert('Order "submited.\n"');
 }
