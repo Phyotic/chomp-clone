@@ -460,5 +460,5 @@ async function handleCheckout(event) {
     });
     const data = await response.json();
 
-    alert('Order "submited.\n"');
+    alert('Order "submited."\n');
 }

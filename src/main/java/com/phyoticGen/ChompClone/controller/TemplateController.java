@@ -1,4 +1,4 @@
-package com.phyoticGen.ChompClone;
+package com.phyoticGen.ChompClone.controller;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

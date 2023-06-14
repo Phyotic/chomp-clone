@@ -1,8 +1,10 @@
-package com.phyoticGen.ChompClone;
+package com.phyoticGen.ChompClone.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.phyoticGen.ChompClone.model.OrderItem;
 
 @RestController
 public class ChompController {

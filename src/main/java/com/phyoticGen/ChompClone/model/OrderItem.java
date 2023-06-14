@@ -1,4 +1,4 @@
-package com.phyoticGen.ChompClone;
+package com.phyoticGen.ChompClone.model;
 
 public class OrderItem {
     private String name;
