@@ -62,11 +62,27 @@ if(localStorage.getItem("cc-cart-items")) {
 //Toggle cart overlay.
 function toggleAside(event) {
     const aside = document.getElementById("checkout-aside");
+    const blackout = document.getElementById("blackout");
+    const content = document.getElementById("checkout-aside-content");
     
     if(aside.style.display != "flex") {
+        blackout.classList.toggle("fadeOutBlackout");
+        content.classList.toggle("fadeOutRight");
+
         aside.style.display = "flex";
+        setTimeout(() => {
+            blackout.classList.toggle("fadeInBlackout");
+            content.classList.toggle("fadeInRight");
+        }, 300);
     } else {
-        aside.style.display = "none";
+        blackout.classList.toggle("fadeOutBlackout");
+        content.classList.toggle("fadeOutRight");
+
+        setTimeout(() => {
+            aside.style.display = "none";
+            blackout.classList.toggle("fadeInBlackout");
+            content.classList.toggle("fadeInRight");
+        }, 300);
     }
 }
 

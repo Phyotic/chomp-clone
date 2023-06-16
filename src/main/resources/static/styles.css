@@ -72,7 +72,7 @@ hr {
 }
 
 /* Animations */
-@keyframes fadeIn {
+@keyframes fadeInLeft {
     from {
         opacity: 0;
         left: -30px;
@@ -81,6 +81,18 @@ hr {
     to {
         opacity: 1;
         left: 0px;
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        right: -30px;
+    }
+
+    to {
+        opacity: 1;
+        right: 0px;
     }
 }
 
@@ -94,11 +106,56 @@ hr {
     }
 }
 
+@keyframes fadeInBlackout {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .8;
+    }
+}
+
 .fadeIn {
     animation-duration: .5s;
     animation-delay: 1s;
     animation-timing-function: ease;
     animation-fill-mode: backwards;
+}
+
+.fadeInBlackout {
+    animation-duration: .3s;
+    animation-delay: 0s;
+    animation-fill-mode: backwards;
+    animation-name: fadeInBlackout;
+}
+
+.fadeOutBlackout {
+    animation-name: fadeInBlackout;
+    animation-duration: .3s;
+    animation-delay: 0s;
+    animation-direction: reverse;
+}
+
+.fadeInLeft {
+    animation-name: fadeInLeft;
+    animation-duration: .5s;
+    animation-delay: 0s;
+    animation-fill-mode: backwards;
+}
+
+.fadeInRight {
+    animation-name: fadeInRight;
+    animation-delay: 0s;
+    animation-duration: .3s;
+    animation-fill-mode: backwards;
+}
+
+.fadeOutRight {
+    animation-name: fadeInRight;
+    animation-delay: 0s;
+    animation-duration: .3s;
+    animation-direction: reverse;
 }
 
 /* == Templates CSS ==*/
@@ -335,6 +392,8 @@ nav {
 }
 
 /* Checkout Overlay */
+
+
 #checkout-aside {
     display: none;
     position: fixed;
@@ -416,7 +475,7 @@ nav {
     font-family: inter-bold;
     line-height: 3.1rem;
     margin: 6% 0;
-    animation-name: fadeIn;
+    animation-name: fadeInLeft;
     animation-delay: .5s;
     animation-duration: .6s;
     position: relative;
@@ -428,7 +487,7 @@ nav {
     text-align: center;
     font-size: 1.1rem;
     line-height: 1.5rem;
-    animation-name: fadeIn;
+    animation-name: fadeInLeft;
     animation-delay: .9s;
     animation-duration: .6s;
     position: relative;
@@ -436,7 +495,7 @@ nav {
 
 #first-impression-button {
     margin: 12% 0 7%;
-    animation-name: fadeIn;
+    animation-name: fadeInLeft;
     animation-delay: 1.1s;
     animation-duration: .6s;
     position: relative;
@@ -444,7 +503,7 @@ nav {
 
 #trustpilot {
     margin: 10px 15px 10px 0px;
-    animation-name: fadeIn;
+    animation-name: fadeInLeft;
     animation-delay: 1.2s;
     animation-duration: .6s;
     position: relative;
@@ -453,7 +512,7 @@ nav {
 #review-text {
     color: black;
     margin-bottom: 6rem;
-    animation-name: fadeIn;
+    animation-name: fadeInLeft;
     animation-delay: 1.2s;
     animation-duration: .6s;
     position: relative;
@@ -467,7 +526,7 @@ nav {
 
 #social-food {
     width: 95%;
-    animation-name: fadeIn, grow;
+    animation-name: fadeInLeft, grow;
     animation-delay: .7s;
     animation-duration: 2s, .8s;
     animation-timing-function: ease, ease-in-out;
@@ -742,7 +801,7 @@ nav {
     margin-right: auto;
     margin: 50px auto 100px;
     position: relative;
-    animation-name: fadeIn;
+    animation-name: fadeInLeft;
 }
 
 /* Faq Section */
