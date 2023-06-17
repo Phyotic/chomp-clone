@@ -308,6 +308,11 @@ hr {
 }
 
 /*Navigation-link menu*/
+.phoneLink {
+    text-decoration-line: none;
+    color: var(--purple-blue);
+}
+
 nav {
     overflow: hidden;
     background-color: var(--light-blue-bg-image);
