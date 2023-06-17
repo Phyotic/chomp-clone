@@ -1,8 +1,8 @@
 # **Chomp Clone**
 
-This repository is my recreation of the [Chomp Template](https://chomp.webflow.io/) from webflow. The goal is to replicate the functional front-end and add some simple back-end functionality.
+This repository showcases my recreation of the [Chomp Template](https://chomp.webflow.io/) from webflow. The aim is to replicate the functional front-end of the template and implement some simple back-end functionality.
 
-The purpose of this repo is to demonstrate functional front-end and simple back-end capbailities. 
+The purpose of this repo is to demonstrate my proficiency with HTML, CSS, and JavaScript with a functional front-end website. In addition, I'll also demonstrate some limited Java, Spring Boot, and handling of JSON data and manipulation of JSON strings. 
 
 # **Features**
 
