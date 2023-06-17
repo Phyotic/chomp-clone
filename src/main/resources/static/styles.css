@@ -48,6 +48,7 @@ a {
     color: white;
     border-radius: 5px;
     font-size: 1.1rem;
+    cursor: pointer;
 }
 
 .dark-prime-blue {
@@ -308,6 +309,11 @@ hr {
 }
 
 /*Navigation-link menu*/
+.phoneLink {
+    text-decoration-line: none;
+    color: var(--purple-blue);
+}
+
 nav {
     overflow: hidden;
     background-color: var(--light-blue-bg-image);
