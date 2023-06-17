@@ -31,6 +31,7 @@ if(localStorage.getItem("cc-cart-items")) {
         await loadCartItems();
         addQuantityHandler();
         updateTotal();
+        updateCartQuantity();
     })();
 } else {
     loadCartEmpty();
@@ -217,8 +218,11 @@ async function handleSubmit(event, formName) {
         saveItemToLocalStorage(item);
         await addItemToCart(item);
         updateTotal();
+        updateCartQuantity();
         toggleAside();
-        button.value = "Add to Cart";
+        setTimeout(() => {
+            button.value = "Add to Cart";
+        }, 200);
     }
 }
 
@@ -371,6 +375,7 @@ async function addItemToCart(item) {
 //Removes the item from the displayed cart.
 async function removeItemFromCart(cartItem) {
     cartItem.remove();
+    updateCartQuantity();
     
     const itemsContainer = document.getElementById("items-container");
     const items = itemsContainer.getElementsByClassName("cart-item-container");
@@ -408,6 +413,11 @@ function addQuantityHandler() {
 
         for(const e of children) {
             if(e.classList.contains("update-cart-item")) {
+                item.addEventListener("change", (event) => {
+                    event.preventDefault();
+                    cartInputChange(event.target.form, event.target.valueAsNumber);
+                });
+
                 item.addEventListener("submit", (event) => {
                     quantitySubmit(event);
                 });
@@ -447,6 +457,35 @@ function quantitySubmit(event) {
         }
     }
     updateTotal();
+    updateCartQuantity();
+}
+
+//Handles the quantity change of the input number-type in the cart.
+function cartInputChange(itemForm, newQuantity) {
+    const changedName = itemForm.querySelector('input[name="itemName"]').value;
+
+    const itemsContainer = document.getElementById("items-container");
+    const items = itemsContainer.getElementsByClassName("cart-item-container");
+
+    for(const item of items) {
+        if(item.querySelector('input[name="itemName"]').value === changedName) {
+            for(const element of item.children) {
+                if(element.classList.contains("update-cart-item")) {
+                    for(const input of element) {
+                        if(input.name === "itemQuantity") {
+                            input.outerHTML = '<input class="cart-quantity" type="number" name="itemQuantity" value="' + newQuantity + '">';
+                            setItemInLocalStorage(changedName, newQuantity);
+                            updateTotal();
+                            updateCartQuantity();
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            break;
+        }
+    }
 }
 
 //Sets the item in local storage to the specified quantity.
@@ -477,4 +516,18 @@ async function handleCheckout(event) {
     const data = await response.json();
 
     alert('Order "submited."\n');
+}
+
+//Updates the quantity in the UI of the cart button. 
+function updateCartQuantity() {
+    const items = document.getElementById("items-container").children;
+    let total = 0;
+
+    for(const item of items) {
+        const quantity = item.querySelector('input[name="itemQuantity"]').value;
+        total += parseInt(quantity);
+    }
+
+    const cartQuantity = document.getElementById("in-cart");
+    cartQuantity.textContent = total;
 }
