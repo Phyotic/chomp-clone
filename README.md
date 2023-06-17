@@ -17,19 +17,19 @@ The purpose of this repo is to demonstrate my proficiency with HTML, CSS, and Ja
 
 ## Home Animations
 
-<img src="https://i.imgur.com/BStc22y.gif" width="400" title="source">
+<img src="https://i.imgur.com/BStc22y.gif" width="100%" title="source">
 
-Source ⬆️  ------------------------------------------- ⬇️ Clone
+                Source ⬆️  --------------------------------------- ⬇️ Clone
 
-<img src="https://i.imgur.com/XKZNbKJ.gif" width="400" title="clone">
+<img src="https://i.imgur.com/XKZNbKJ.gif" width="100%" title="clone">
 
 ## Cart System
 
-<img src="https://i.imgur.com/DFltv2S.gif" width="400">
+<img src="https://i.imgur.com/DFltv2S.gif" width="100%">
 
-Source ⬆️ ------------------------------------------- ⬇️ Clone 
+                Source ⬆️ ------------------------------------------- ⬇️ Clone 
 
-<img src="https://i.imgur.com/ei9eMbj.gif" width="400">
+<img src="https://i.imgur.com/ei9eMbj.gif" width="100%">
 
 ## Mobile View
 
